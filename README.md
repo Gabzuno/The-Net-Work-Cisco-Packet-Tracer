@@ -15,7 +15,7 @@
 
 ## 02. Connecting 2 PCs with a Cross FastEthernet Cable
 
-## TERMINOLOGY
+## GLOSSARY
 
 <ol>
   <li>
