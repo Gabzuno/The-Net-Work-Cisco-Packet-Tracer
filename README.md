@@ -15,6 +15,10 @@
 
 ## 02. Connecting 2 PCs with a Cross FastEthernet Cable
 
+<p align="center">
+  <img src="assets/img/Connecting%202Pcs.png" alt="Output">
+</p>
+
 ## GLOSSARY
 
 <ol>
