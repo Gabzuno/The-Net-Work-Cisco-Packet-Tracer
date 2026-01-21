@@ -4,22 +4,57 @@
 <div align="center">
   <p>This repository contains my personal exercise in a journey to learn Networking using Cisco Packet Tracers, computer networking simulation software for teaching and learning networking, IoT, and cybersecurity skills in a virtual lab.</p>
 </div>
+<br>
+
+# Network Topology
+
+<p> Network topology is a visual map to understand the physical or logical structure of a computer network.
+
+<h2> 2 Types of Network Topology</h2>
+<h3>1. Physical Topology</h3>
+<p>a type of topology in which all devices and components in the network are drawn in terms of their exact locations. Looking at this topology, it is seen which cabling is made over which paths and devices."
+<h3>2. Logical Topology</h3>
+<p>does not show the exact location of the devices in the topology like physical topology. It often contains fewer elements than physical topology. Because data flow is important in logical topology.
+<h2>Different Kinds of Topology</h2>
+<h3>Ring Topology</h3>
+<p> It works in a closed loop logic. The sent data travels around the ring in one direction until it reaches the destination.</p>
+<img src="assets/img/Ring.gif" alt="Ring like connection between devices">
+<h3>Star Topology</h3>
+<p>Each node in the Star topology is connected to a central node. All data flow is done through the central node. Star topology is one of the most common computer network topologies.</p>
+<img src="assets/img/Star.gif">
+<h3>Mesh Topology</h3>
+<p>It is a network topology where there is no central node and each node can be directly connected to the other. Mesh topology is not a suitable topology for large networks. It is divided into 2 types:</p>
+<h3>Full-Mesh<h3>
+<p> each node in the network is connected to all other nodes by cabling separately. In this topology, it is unlikely that the connection between two nodes will be broken. Because there are alternative ways of connecting.</p>
+<img src="assets/img/FullMesh.gif">
+<h3>Partial-Mesh</h3>
+<p>In the Partial-Mesh topology, although each node is not directly connected to all other nodes, they are largely interconnected. Just like in Full-Mesh topology, there are alternative ways to reach the target node in case of disconnection.</p>
+<img src="assets/img/PartialMesh.gif">
+<h3>Bus Topology</h3>
+<p>is a topology where nodes are located on a common path and data transmission is made with a bidirectional connection on this path. In the bus topology, each node receives every transmitted data even if it does not belong to it. Since there is no hierarchical order among the nodes, there is no transmission priority.</p>
+<img src="assets/img/Bus.gif">
+<h3>Point-to-point Topology</h3>
+<p>is the simplest topology and consists of two nodes connected together.</p>
+<img src="assets/img/P2P.png">
+<h3>Tree Topology</h3>
+<p>is a hybrid network topology formed by connecting star and bus topology. Tree topology has a hierarchical order and each node can have any number of subnodes.</p>
+<img src="assets/img/Tree.gif">
 
 </br>
 
-## 01. Installing Cisco Packet Tracer
+# Cisco Packet Tracer
 
 ### Visit their official website by clicking 👾<a href="https://www.netacad.com/cisco-packet-tracer">here</a>👾.<br>
 
 <p style="text-align:justify;">Create your own Cisco account by registering through any email accounts or via google account. Then, click their module for <b>Getting Started with Cisco Packet Tracer</b> which will give you the installation link of the software witihn its modular. Once installed, login the account you created and you can now start learning.</p>
 
-## 02. Connecting 2 PCs with a Cross FastEthernet Cable
+## 01. Connecting 2 PCs with a Cross FastEthernet Cable
 
 <p align="center">
   <img src="assets/img/Connecting%202Pcs.png" alt="Output">
 </p>
 
-## GLOSSARY
+# GLOSSARY
 
 <ol>
   <li>
