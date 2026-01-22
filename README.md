@@ -42,6 +42,23 @@
 
 </br>
 
+# Types of Networking
+
+<p>The network size can be expressed in terms of the geographic area and the number of machines that are part of the network.</p>
+
+<h3>LAN (Local Area Network)</h3>
+<p> connects computers and devices within a small area like a home, office, or school, allowing them to share resources (files, printers, internet) efficiently using technologies like Ethernet or Wi-Fi, providing fast, secure, and cost-effective communication. It's a network of fewer than 5000 networked computers that span multiple buildings.</p>
+<img src="assets/img/local_area_network.jpg">
+<h3>PAN (Personal Area Network)</h3>
+<p>is a computer network for interconnecting electronic devices within an individual person's workspace. A PAN provides data transmission among devices such as computers, smartphones, tablets and personal digital assistants.</p>
+<img src="assets/img/PAN.png">
+<h3>WAN (Wide Area Network)</h3>
+<p>a network system that could connect between other LANs or MANs using telephone lines, and radio waves. It is mainly limited to an enterprise or an organization.</p>
+<img src="assets/img/wide-area-network-wan-diagram-vector.jpg">
+<h3>MAN (Metropolitan Area Network)</h3>
+<p>is a computer network in a community, college campus, or a small region. This network is bigger than a LAN, which is often confined to a single building or venue. This kind of network enables you to cover an area from few miles to tens of miles, depending on the setup.</p>
+<img src="assets/img/Metropolitan-Area-Network-MAN-image-1024x576.jpg">
+
 # Cisco Packet Tracer
 
 ### Visit their official website by clicking 👾<a href="https://www.netacad.com/cisco-packet-tracer">here</a>👾.<br>

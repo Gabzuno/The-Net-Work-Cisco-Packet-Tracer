@@ -18,4 +18,9 @@ Reasons for Building a Computer:
     3. Personalized design.
     4. Within your budget.
     5. Easier to upgrade.
-
+5 R's of Troubleshooting
+    • Reboot
+    • Reinstall
+    • Replug
+    • Reimage
+    • Replace
