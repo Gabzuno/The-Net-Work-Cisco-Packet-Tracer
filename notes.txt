@@ -1,3 +1,21 @@
 Bandwidth - is the capacity of a medium to carry data.
 Throughput - is the measure of the transfer of bits across the media over a given period of time.
 Latency - refers to the amount of time, including delays, for data to travel from one given point to another.
+Computer - an electronic system that operated by commands stored in its own memory. It can accepts data(inputs), process data through specified rules, produce information (output), and store for future use.
+Characcteristics : 
+    Speed - can process data at the rate of millions of instructions per second.
+    Accuracy - offers high degree of precision.
+    Diligence - doesn't get tired
+    Storage Capability - store large quantities of data and information.
+    Versatility - naturally flexible. Can perform various task/activities.
+Viruses - is a very small malicious software that hides in real programs.
+    E-mail Viruses - spreads to e-mail messages as an attachment.
+    Trojan Horses - a program for computer. Claims to do one thing, but when executed it does harm instead.
+    Worms - a tiny piece of software that replicates itself using computer networks and security holes. It uses the security holes replicating itself from to the new computer.
+Reasons for Building a Computer:
+    1. To save money.
+    2. Personally choose reliable components.
+    3. Personalized design.
+    4. Within your budget.
+    5. Easier to upgrade.
+
