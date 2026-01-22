@@ -68,7 +68,13 @@
 ## 01. Connecting 2 PCs with a Cross FastEthernet Cable
 
 <p align="center">
-  <img src="assets/img/Connecting%202Pcs.png" alt="Output">
+  <img src="assets/img/Connecting%202Pcs.png" alt="2Pcs connected via ethernet cable">
+</p>
+
+## 02. Connecting PCs to Switch using Cooper Straight Through cable
+
+<p align="center">
+  <img src="assets/img/Connecting to Switch.png" alt="Pcs connected through switch">
 </p>
 
 # GLOSSARY
