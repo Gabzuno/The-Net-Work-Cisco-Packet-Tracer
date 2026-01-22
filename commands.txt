@@ -1,0 +1,20 @@
+//// SWITCH ////
+
+en = enable
+conf t = configure terminal
+hostname = assign switch name
+show vlan b = show list of vlan in brief format
+
+//// Creating Password ////
+# enable secret = make password encrypted
+en => conf t => enable secret <password>
+
+//// Creating VLAN ////
+
+en => conf t => vlan <number> => name <vlan name>
+
+//// Assigning VLAN ////
+
+en => conf t => int <port> => sw mo acc => sw acc vlan <number>
+
+

@@ -77,6 +77,15 @@
   <img src="assets/img/Connecting to Switch.png" alt="Pcs connected through switch">
 </p>
 
+## 03. Separating 4Pcs via VLAN with 2 PCs each
+
+<p align="center">
+  <img src="assets/img/VLAN2.png" alt="4Pcs with VLAN configuration">
+</p>
+<p align="center">
+  <img src="assets/img/VLAN.png" alt="4Pcs with VLAN configuration">
+</p>
+
 # GLOSSARY
 
 <ol>
