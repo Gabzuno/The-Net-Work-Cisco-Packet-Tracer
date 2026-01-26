@@ -17,4 +17,10 @@ en => conf t => vlan <number> => name <vlan name>
 
 en => conf t => int <port> => sw mo acc => sw acc vlan <number>
 
+// Assigning SVI (Switched Virtual Interface) in Layer 3 Switch //
+
+# SVI is a logical layer 3 interface of a switch, enabling routing capability without physical router.
+en => conf t => int vlan <num> => add <IP> <Subnetmask> => exit => ip routing => exit
+show ip route
+
 
