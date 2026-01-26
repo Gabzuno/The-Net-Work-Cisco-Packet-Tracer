@@ -23,4 +23,30 @@ en => conf t => int <port> => sw mo acc => sw acc vlan <number>
 en => conf t => int vlan <num> => add <IP> <Subnetmask> => exit => ip routing => exit
 show ip route
 
+// Factory Reset Switch //
+
+en => erase startup => erase startup-config => reload
+
+// DHCP Configuration Layer 3 Switch //
+# exclude switch/routing IP
+en => conf t => ip dhcp excluded-address <ip> ex. 192.168.1.1
+
+# Show List of DHCP
+ip dhcp pool ?
+
+# Asssign DHCP
+ip dhcp pool <name>
+network <network ip> ex. 192.168.1.0 255.255.255.0
+# Assign default router
+default router <gateway ip> ex. 192.168.1.1
+
+// Creating ACL (Access Control List) //
+
+en => conf t => ip access-list extended <NAME>
+permit ip host <host ip> host <target ip>
+# denying anymore access
+deny ip <host network ip> <host subnet> <target network ip> <target host subnet>
+ex. deny ip 192.168.1.0 0.0.0.255 192.168.2.0 0.0.0.255
+permit ip any any
+int vlan <num> => ip access-group <ACL NAME> in(inbound)
 

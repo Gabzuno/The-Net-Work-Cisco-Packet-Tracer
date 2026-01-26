@@ -24,3 +24,9 @@ Reasons for Building a Computer:
     • Replug
     • Reimage
     • Replace
+4 Main Steps in DHCP
+    • Discover
+    • Offer
+    • Request
+    • Acknowledge
+APIPA - Automatic Private IP Addressing - client assigning ip to itself when DHCP server doesn't respond to the client request for IPs.
