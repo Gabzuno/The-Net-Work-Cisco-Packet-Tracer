@@ -42,6 +42,26 @@
 
 </br>
 
+# Subnetting
+
+<p>Subnetting is the process of dividing a larger network into smaller, more manageable subnetwors or subnets.</p>
+<h2>IP (Internet Protocol) Addresing</h2>
+<p>is a unique numerical label assigned to each device connected to a network, allowing it to communicate with other devices. A digital address that helps identify and locate devices within a network or across the internet. IP Address come in two versions: <b>IPv4</b>, which consists of four sets of numbers, and <b>IPv6</b>, which uses a longer format to accommodate the growing number of devices online.</p>
+<h2>Subnetmask</h2>
+<p>are a crucial companion to IP Addresses. They determine how the address is split between the network portion and the host portion. It consists of a sequence of numbers, typically written in the same format as an IP address, that tells the device how much of the IP address belongs to the network and how much is reserved for the individual device.</p>
+<p><b>126.0.0.0 - 128.0.0.0</b> - primarily reserved for loopback addresses, allowing applications to communicate with the host without requiring an external network (ex. 127.0.0.1).</p>
+<br>
+<img src="assets/img/subnet.png">
+<p><b>Possible Addresses</b> - where <b>n</b> is the number of bits allocated for the host portion. In the example, the value of n is the <b>8 zeroes</b> that are allocated bits for host which equals to <b>256</b>.</p>
+<p><b>Usable Addresses</b> - The first address in this range is reserved for the <b>network address</b>(subnet itself), and the last address is reserved for the <b>broadcast address</b>, used to send data to all devices in the subnet. In the example, since two of the addresses from the number <b>possible addresses</b> will be allocated to the network and broadcast ID, then the total number of <b>usable addresses</b> will be <b>254</b>.</p>
+<p><b>Subnets</b> - If the network requires more than one subnet, borrowing bits from the host portion is needed.</p>
+
+<h3>Classless Inter-Domain Routing (CIDR) notation</h3>
+<p>combining the IP address with a suffix that indicates the number of network bits in the subnet mask.</p>
+<img src="assets/img/CIDR.png">
+
+<br>
+
 # Types of Networking
 
 <p>The network size can be expressed in terms of the geographic area and the number of machines that are part of the network.</p>
