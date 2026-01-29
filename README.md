@@ -60,6 +60,9 @@
 <p>combining the IP address with a suffix that indicates the number of network bits in the subnet mask.</p>
 <img src="assets/img/CIDR.png">
 
+<h3>List of IPs that cannot be use:</h3>
+<img src="assets/img/reservedIPs.png">
+
 <br>
 
 # Types of Networking

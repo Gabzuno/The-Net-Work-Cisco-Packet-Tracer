@@ -28,6 +28,7 @@ show ip route
 en => erase startup => erase startup-config => reload
 
 // DHCP Configuration Layer 3 Switch //
+
 # exclude switch/routing IP
 en => conf t => ip dhcp excluded-address <ip> ex. 192.168.1.1
 
@@ -37,6 +38,7 @@ ip dhcp pool ?
 # Asssign DHCP
 ip dhcp pool <name>
 network <network ip> ex. 192.168.1.0 255.255.255.0
+
 # Assign default router
 default router <gateway ip> ex. 192.168.1.1
 
@@ -44,9 +46,12 @@ default router <gateway ip> ex. 192.168.1.1
 
 en => conf t => ip access-list extended <NAME>
 permit ip host <host ip> host <target ip>
+
 # denying anymore access
 deny ip <host network ip> <host subnet> <target network ip> <target host subnet>
 ex. deny ip 192.168.1.0 0.0.0.255 192.168.2.0 0.0.0.255
+
 permit ip any any
+
 int vlan <num> => ip access-group <ACL NAME> in(inbound)
 
