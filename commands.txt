@@ -1,21 +1,42 @@
-//// SWITCH ////
+/// SWITCH ///
 
 en = enable
 conf t = configure terminal
 hostname = assign switch name
 show vlan b = show list of vlan in brief format
 
-//// Creating Password ////
+/// Creating Password ///
 # enable secret = make password encrypted
 en => conf t => enable secret <password>
 
-//// Creating VLAN ////
+/// Creating VLAN ///
 
 en => conf t => vlan <number> => name <vlan name>
 
-//// Assigning VLAN ////
+/// Assigning VLAN ///
 
 en => conf t => int <port> => sw mo acc => sw acc vlan <number>
+
+/// Assigning Voice VLAN ///
+# Used for Phones
+en => conf t => vlan <number> ex. vlan 40
+name <vlan name> ex. Voice
+interface/int <port> ex. int g0/0
+switchport/sw voice vlan <number> ex. sw voice vlan 40
+
+// View Port Status //
+en => show interface/int <port> switchport/sw
+ex. show int g0/0 sw
+
+// Assigning Trunking to Switch ports //
+
+en => conf t => interface/int <port> ex. g0/0
+switchport/sw trunk encapsulation ? - show availabe trunking protocol
+# ISL is outdated. dot1q is recommended uses 802.1Q protocol
+sw trunk encapsulation <protocol> ex. dot1q
+sw mode trunk - enabled trunking
+# View Trunking
+en => show int <port> trunk
 
 // Assigning SVI (Switched Virtual Interface) in Layer 3 Switch //
 
