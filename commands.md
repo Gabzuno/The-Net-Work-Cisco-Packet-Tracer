@@ -1,94 +1,189 @@
-/// SWITCH ///
+// **SWITCH** //
 
-en = enable
-conf t = configure terminal
-hostname = assign switch name
-show vlan b = show list of vlan in brief format
+
+
+* en => enable privileged exec mode
+* conf t = enable global config mode
+* show running-config/run = display active config
+* copy running-config startup-config/ copy run start = saved config in the device's NVRAM.
+* hostname = assigning device name
+* show vlan b = show list of vlan in brief forma
+
+
 
 // Creating Password //
-# enable secret = make password encrypted
+
+\# enable secret = make password encrypted
+
 en => conf t => enable secret <password>
+
+
 
 /// Creating VLAN ///
 
+
+
 en => conf t => vlan <number> => name <vlan name>
+
+
 
 /// Assigning VLAN ///
 
+
+
 en => conf t => int <port> => sw mo acc => sw acc vlan <number>
 
+
+
 /// Assigning Voice VLAN ///
-# Used for Phones
+
+\# Used for Phones
+
 en => conf t => vlan <number> ex. vlan 40
+
 name <vlan name> ex. Voice
+
 interface/int <port> ex. int g0/0
+
 switchport/sw voice vlan <number> ex. sw voice vlan 40
 
+
+
 // View Port Status //
+
 en => show interface/int <port> switchport/sw
+
 ex. show int g0/0 sw
+
+
 
 // Assigning Trunking to Switch ports //
 
+
+
 en => conf t => interface/int <port> ex. g0/0
+
 switchport/sw trunk encapsulation ? - show availabe trunking protocol
-# ISL is outdated. dot1q is recommended uses 802.1Q protocol
+
+\# ISL is outdated. dot1q is recommended uses 802.1Q protocol
+
 sw trunk encapsulation <protocol> ex. dot1q
+
 sw mode trunk - enabled trunking
-# View Trunking
+
+\# View Trunking
+
 en => show int <port> trunk
 
+
+
 // Assigning IP Helper-Address //
-# Router 
+
+\# Router 
+
 en => conf t => int <port> ex.go0/0
+
 ip helper-address <DHCP Server IP>
 
-# delete helper
+
+
+\# delete helper
+
 no ip helper-address <IP>
 
-# Showing helper
+
+
+\# Showing helper
+
 en => show run | include ip helper-address
+
+
 
 // Assigning SVI (Switched Virtual Interface) in Layer 3 Switch //
 
-# SVI is a logical layer 3 interface of a switch, enabling routing capability without physical router.
+
+
+\# SVI is a logical layer 3 interface of a switch, enabling routing capability without physical router.
+
 en => conf t => int vlan <num> => add <IP> <Subnetmask> => exit => ip routing => exit
+
 show ip route
+
+
 
 // Factory Reset Switch //
 
+
+
 en => erase startup => erase startup-config => reload
+
+
 
 // DHCP Configuration Layer 3 Switch //
 
-# exclude switch/routing IP
+
+
+\# exclude switch/routing IP
+
 en => conf t => ip dhcp excluded-address <ip> ex. 192.168.1.1
 
-# Show List of DHCP
+
+
+\# Show List of DHCP
+
 ip dhcp pool ?
 
-# Asssign DHCP
+
+
+\# Asssign DHCP
+
 ip dhcp pool <name>
+
 network <network ip> ex. 192.168.1.0 255.255.255.0
 
-# Assign default router
+
+
+\# Assign default router
+
 default router <gateway ip> ex. 192.168.1.1
+
+
 
 // Creating ACL (Access Control List) Router //
 
+
+
 en => conf t => ip access-list extended <NAME>
+
 permit ip host <host ip> host <target ip>
 
-# denying anymore access
+
+
+\# denying anymore access
+
 deny ip <host network ip> <host subnet> <target network ip> <target host subnet>
+
+
 
 ex. deny ip 192.168.1.0 0.0.0.255 192.168.2.0 0.0.0.255
 
+
+
 permit ip any any
+
+
 
 int vlan <num> => ip access-group <ACL NAME> in(inbound)
 
-# View
+
+
+\# View
+
+
 
 en => show running-config/run or show access-lists 
+
+
+
+
 

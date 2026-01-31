@@ -27,3 +27,40 @@
 192.168.10.64 - 192.168.10.127 - usable is .65 - .126
 192.168.10.128 - 192.168.10.191 - usable is .129 - .190
 192.168.10.192 - 192.168.10.255 - usable is .193 - .254
+
+
+192.168.0.1 /23
+
+11111111.11111111.11111110.00000000 255.255.254.0
+
+Total Host = 510
+
+3 subnets:
+   • Room301 to Room304 - 184 Hosts
+   • MIS - > 20 Hosts
+   • Registrar - > 20 Hosts
+
+1. Rooms - Hosts = 184
+2^8 >= Hosts => 256 - 2 = 254 >= 184
+Usable Hosts = 254
+Subnet Masks = /24 255.255.255.0
+Network: 192.168.0.0
+IPs = 192.168.0.1 - 192.168.0.254
+Broadcast: 192.168.0.255
+
+
+2. MIS - 20 hosts
+2^3 >= Hosts => 32 - 2 = 30 >= 20
+Usable = 30
+Subnet Masks = /27 255.255.255.224
+Network: 192.168.1.0
+IPs: 192.168.1.1 - 192.168.1.30
+Broadcast: 192.168.1.31
+
+3. Registrar - 20 hosts
+2^3 >= Hosts => 32 - 2 = 30 >= 20
+usable = 30
+subnet masks = /27 255.255.255.224
+network: 192.168.1.32
+usable: 192.168.1.33 - 192.168.1.62
+broadcast: 192.168.1.63
