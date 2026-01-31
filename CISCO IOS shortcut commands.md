@@ -181,13 +181,22 @@
 
 &nbsp;	Router# wr
 
+##### **WAYS TO BACKUP CONFIG**
 
+* Router# copy run start / copy running-config startup-config - saves run (RAM) to start (VRAM)
+* 
+**###### TFTP SERVER**
 
+* Turned on the TFTP and assigned an IP same as router's network
+* Router# copy run tftp // Backup
+* Address or name of remote host \[]? \[ServerIP]
+* Destination filename \[router-confg]? \[filename].cfg
 
+&nbsp;	**Tips:** Name files with device + date. ex. R1\_2026-2-1.cfg
 
-
-
-&nbsp;	
+* Router# copy tftp run // Restore
+* Address or name of remote host \[]? \[ServerIP]
+* Source filename \[]? \[filename].cfg
 
 
 
