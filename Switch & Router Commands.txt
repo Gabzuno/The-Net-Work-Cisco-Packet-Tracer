@@ -1,0 +1,269 @@
+[ ROUTER CONFIGURATION ]
+
+
+// EXEC/PRIVILEGED MODE //
+
+* Router> en = enter privileged mode
+* Router# sh run = show running-config
+* Router# sh ip ro = show routing table
+* Router# sh ip int br = interface status
+* Router# sh ver = IOS & Hardware info
+* Router# wr = save config
+* Router# sh [port] sw = view port status
+
+
+// GLOBAL CONFIG MODE //
+
+* Router# conf t = enter global mode
+* Router(config)# host R1 = set hostname
+* R1(config)# ip ro <network> <subnetmask> <gateway> = static routing
+* R1(config)# ip route = enable IP routing
+
+	// CREATING DHCP POOL //
+	
+	* R1(config)# ip dhcp pool [name]
+	* R1(dhcp-config)# network [Network-ID] [Subnet-Mask]
+	* R1(dhcp-config)# default-router [Gateway-IP]
+	* R1# sh ip dhcp pool = SHOW DHCP POOL
+	* R1(config)# ip dhcp excluded-address [IP] = exclude for pooling; mostly for router gateway
+
+		// FOR VoIP or IP PHONE //
+
+		* R1(config)# ip dhcp pool [name ex. VOICE]
+		* R1(dhcp-config)# network [Network-ID] [Subnet-Mask]
+		* R1(dhcp-config)# default-router [Gateway-IP]
+		* R1(dhcp-config)# option 150 ip [Gateway-IP]
+		
+		// ENABLING TELEPHONE SERVICE //
+		
+		* R1(config)# telephony-service
+		* R1(config-telephony)# max-dn [num. of IP PHONE]
+		* R1(config-telephony)# max-ephone [num. of IP PHONE]
+		* R1(config-telephony)# ip source-address [VOICE VLAN GATEWAY] port 2000
+		* R1(config-telephony)# auto assign 1 to [max. IP PHONE]
+			Tips: Router# sh ver; look for [uc, voice, cme, unified] ex. c2900-universalk9_npe-mz.SPA.15.4.uc
+
+		// ASSIGNING PHONE NUMBER //
+		* R1(config)# ephone-dn [PHONE ID ex.1]
+		* R1(config)# number [PHONE NUMBER ex. 2001]
+		* R1# do wr 
+			Note: Router models with VoIP features: 2811, 2911, 1941
+
+
+// ACL (ACCESS CONTROL LIST) //
+
+Allowing packets to specified IP or Network
+
+* R1(config)# ip access-list extended [Name]
+* R1(config-ext-nacl)# permit ip host [Source IP] host [Destination IP]
+* R1(config-ext-nacl)# permit ip any any
+
+Denying pacets to specified IP or Network
+
+* R1(config-ext-nacl)# deny ip [Source Network ID] [Source Subnet] [Dest. Net. IP] [Dest. Subnet] ex. 0.0.0.255
+
+
+// ASSIGNING ACL TO VLAN //
+
+
+// INTERFACE CONFIG //
+
+* R1(config)# int [port] - selecting port interface
+* R1(config-if)# ip add <IP> <Subnet mask> = assigning IP to physical int
+* R1(config-if)# no ip address = remove IP from physical int
+* R1(config-if)# no shut = enable interface
+
+
+// ROUTING PROTOCOLS //
+
+* router rip = enables routing information protocol (rip)
+
+	R1(config)# router rip
+
+	R1(config-router)# version 1/2
+
+	R1(config-router)# network/net <network address>
+
+* router ospf [process-id] = enables routers to dynamically learn network routes using a link-state protocol.
+
+	R1(config-router)# router-id [id]
+
+	R1(config-router)# net [network-address] [wildcard-mask] area [area-id]
+
+		Note: The [wildcard mask] is the inverse of the subnet mask (e.g., /24 is 0.0.0.255).
+
+	R1(config-router)# passive-interface [interface-id]
+
+		Note: Prevents neighbor adjacencies on networks with no routers.
+
+	R1(config)# router ospf 1
+
+	R1(config-router)# net 192.168.1.0 0.0.0.255 area 0
+
+	R1(config-router)# passive-interface g0/0
+
+
+// SUBINTERFACE CONFIG (VLAN) //
+
+* Router(config)# int [port].[vlan id] ex. int f0/0.1
+* Router(config-subif)# encapsulation dot1q [vlan id] ex. encapsulation dot1q 1
+* Router(config-subif)# ip address [IP] [Subnet Mask]
+* Router(config-subif)# exit
+
+
+[ SWITCH CONFIGURATION ]
+
+
+// EXEC/PRIVILEGED //
+
+* Switch> en = enable privileged mode
+* Switch# sh vlan br = VLAN Summary
+* Switch# sh mac add = show MAC table
+* Switch# sh int status or sh int [port] sw = port status
+* Switch# wr = save config
+* Switch# erase startup => reload = factory reset switch
+
+
+// GLOBAL CONFIG MODE //
+
+* Switch# conf t = enter global mode
+* Switch(config)# host SW1 = set hostname
+* Switch(config)# vlan [1 - 1005] = Create VLAN
+* Switch(config-vlan)# name [name] = Name VLAN
+	Note: LAYER 3 SWITCH IS CAPABLE OF DHCP POOL ex. Catalyst 3560
+	
+	* Switch(config-vlan)# add [Network ID] [Subnet-Mask]
+	* Switch(config-vlan)# ip routing
+	* Switch# sh ip route
+	
+
+// INTERFACE CONFIG //
+
+* Switch(config)# int [port] = selecting interface/port
+* Switch(config)# int range/r [port range ex.f0/0-24] = select range of port
+
+
+	/// ACCESS ///
+
+	* Switch(config-if)# sw mo acc(switchport mode access) = handle traffic for a single VLAN, sending untagged frames directly to end-user devices. 
+	* Switch(config-if or config-if-range)# sw acc vlan [VLAN-ID]
+	* Switch(config-if)# no shut = enable port interface
+
+	/// TRUNKING ///
+
+	* Switch(config-if)# sw mo trunk(switchport mode trunk) - carry traffic for multiple VLANs using 802.1Q tagging for inter-switch communication. Uplinks between switches,
+	connections to routers.
+	* Switch(config-if or config-if-range)# sw trunk allowed vlan \[ID]
+	* Switch(config-if or config-if-range)# sw trunk allowed vlan 10,20,30,etc.
+	* Switch# sh int [port] trunk = view trunking of the specified port.
+
+		Note: If using Layer 3 Switch, capable of routing:
+	
+		* Switch(config-if or config-if-range)# sw trunk encapsulation [dot1q (802.1Q), ISL, negotiate]
+
+		Note: Layer 2 switch automatically assigned their encapsulation into dot1q (recommended).
+
+	/// VOICE ///
+
+	* Switch(config-if or config-if-range)# sw voice vlan [VLAN-ID]
+	* Switch(config-if)# no shut = enable port interface
+
+
+[ LINE CONFIGURATION (Router \& Switch) ]
+
+
+ // CONSOLE //
+
+* Router(config)# line con 0 = configure an access line
+
+	# SET LOCAL ACCOUNT
+
+		* Router(config)# username [name] secret [password] = This set a login auth when accessing both router or switch.
+	
+	# SET MACHINE PASSWORD / BEFORE ALLOWING PRIVILEGED MODE
+
+		* Router(config)# enable secret [password]
+
+	# SET PASSWORD
+
+		* Router(config-line)# password [pass]
+
+		* Router(config-line)# login = forces password check
+
+			Note: Assigning Local username is recommended
+
+	# SET LOCAL ACCOUNT FOR LINE LOGIN
+
+		* Router(config-line)# login local
+
+* Router(config-line)# exec-timeout [min] [sec] = Logs out idle console sessions after set period of time.
+
+* Router(config-line)# logging synchronous = controls how logs displayed. Display system messages after user done typing.
+
+
+ // VTY (Virtual Teletype) = REMOTE //
+
+
+* Router(config)# line vty 0 4
+
+	Note: VTY = remote access either SSH or telnet
+
+	0 4 = 5 users running session simultaneously. 
+
+* Router(config-line)# transport input [protocol] = controls which protocols are allowed.
+
+	Note: PROTOCOLS are SSH, telnet, all, and none.
+
+/// SETUP AN SSH ///
+
+	* Router(config)# username [name] secret [pass]
+
+	* Router(config)# enable secret [pass] 
+
+	* Router(config)# ip domain-name [domain ex. lab.local] (necessary)
+
+	* Router(config)# crypto key generate rsa
+
+	* Router(config)# ip ssh version 2
+
+	* Router(config)# line vty 0 4
+
+	* Router(config-line)# transport input ssh
+
+	* Router(config-line)# login local
+
+	* Router(config-line)# exec-timeout 10 0
+
+	* Router(config-line)# end
+
+	* Router# wr = save the config to the machine's VRAM/Boot
+
+
+[ WAYS TO BACKUP THE ROUTER/SWITCH CONFIGURATION ]
+
+
+// MEMORY //
+
+	* Router# copy run start / copy running-config startup-config - saves run (RAM) to start (VRAM)
+
+// TFTP SERVER //
+
+ Turned on the TFTP and assigned an IP same as router's network
+	
+	// BACKING UP //
+	
+		* Router# copy run tftp 
+	
+		* Address or name of remote host \[]? [Server IP]
+	
+		* Destination filename \[router-confg]? [filename].cfg
+		
+			Tips: Name files with device + date. ex. R1\_2026-2-1.cfg
+	
+	// RECOVERING //
+	
+		* Router# copy tftp run // Restore
+	
+		* Address or name of remote host \[]? \[ServerIP]
+	
+		* Source filename \[]? \[filename].cfg
