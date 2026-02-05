@@ -2,12 +2,12 @@ Bandwidth - is the capacity of a medium to carry data.
 Throughput - is the measure of the transfer of bits across the media over a given period of time.
 Latency - refers to the amount of time, including delays, for data to travel from one given point to another.
 Computer - an electronic system that operated by commands stored in its own memory. It can accepts data(inputs), process data through specified rules, produce information (output), and store for future use.
-Characcteristics : 
-    Speed - can process data at the rate of millions of instructions per second.
-    Accuracy - offers high degree of precision.
-    Diligence - doesn't get tired
-    Storage Capability - store large quantities of data and information.
-    Versatility - naturally flexible. Can perform various task/activities.
+Characteristics : 
+    • Speed - can process data at the rate of millions of instructions per second.
+    • Accuracy - offers high degree of precision.
+    • Diligence - doesn't get tired
+    • Storage Capability - store large quantities of data and information.
+    • Versatility - naturally flexible. Can perform various task/activities.
 Viruses - is a very small malicious software that hides in real programs.
     E-mail Viruses - spreads to e-mail messages as an attachment.
     Trojan Horses - a program for computer. Claims to do one thing, but when executed it does harm instead.
@@ -30,3 +30,8 @@ Reasons for Building a Computer:
     • Request
     • Acknowledge
 APIPA - Automatic Private IP Addressing - client assigning ip to itself when DHCP server doesn't respond to the client request for IPs.
+
+Class-Based Network
+   • Class A: 0.0.0.0 - 127.255.255.255 - default subnet mask /8
+   • Class B: 128.0.0.0 - 191.255.25.255 - default subnet mask /16
+   • Class C: 192.0.0.0 - 223.255.255.255 - default subnet mask /24

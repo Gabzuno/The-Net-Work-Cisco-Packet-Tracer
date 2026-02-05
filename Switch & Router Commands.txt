@@ -3,9 +3,9 @@
 
 // EXEC/PRIVILEGED MODE //
 
-* Router> en = enter privileged mode
-* Router# sh run = show running-config
-* Router# sh ip ro = show routing table
+* Router> en / enable = enter privileged mode
+* Router# sh r / run = show running-config
+* Router# sh ip ro / route = show routing table
 * Router# sh ip int br = interface status
 * Router# sh ver = IOS & Hardware info
 * Router# wr = save config
@@ -17,14 +17,14 @@
 * Router# conf t = enter global mode
 * Router(config)# host R1 = set hostname
 * R1(config)# ip ro <network> <subnetmask> <gateway> = static routing
-* R1(config)# ip route = enable IP routing
+* R1(config)# ip routing = enable IP routing
+* R1# sh ip dhcp pool = SHOW DHCP POOL
 
 	// CREATING DHCP POOL //
 	
 	* R1(config)# ip dhcp pool [name]
 	* R1(dhcp-config)# network [Network-ID] [Subnet-Mask]
 	* R1(dhcp-config)# default-router [Gateway-IP]
-	* R1# sh ip dhcp pool = SHOW DHCP POOL
 	* R1(config)# ip dhcp excluded-address [IP] = exclude for pooling; mostly for router gateway
 
 		// FOR VoIP or IP PHONE //
@@ -44,26 +44,43 @@
 			Tips: Router# sh ver; look for [uc, voice, cme, unified] ex. c2900-universalk9_npe-mz.SPA.15.4.uc
 
 		// ASSIGNING PHONE NUMBER //
+
 		* R1(config)# ephone-dn [PHONE ID ex.1]
 		* R1(config)# number [PHONE NUMBER ex. 2001]
 		* R1# do wr 
-			Note: Router models with VoIP features: 2811, 2911, 1941
+			
+			Note: Router models with VoIP features: 2811, 2911, 1941.
 
+	// ASSIGNING IP HELPER-ADDRESS //
+	
+		# Tells where DHCP server lives when the request machine is on different network, acting as a bridge.
+
+		* R1(config)# int [requestor's network port] ex. f0/0 from switch is 192.168.1.1
+		* R1(config-if) ip helper-address [DHCP SERVER IP]
+			Note: if router connected to another router, enter it's port address instead. ex. 10.10.10.1
+	
+	// REMOVE IP HELPER //
+	
+		* no ip helper-address [IP Helper]
 
 // ACL (ACCESS CONTROL LIST) //
 
-Allowing packets to specified IP or Network
+	// Allowing packets to specified IP or Network //
 
-* R1(config)# ip access-list extended [Name]
-* R1(config-ext-nacl)# permit ip host [Source IP] host [Destination IP]
-* R1(config-ext-nacl)# permit ip any any
+		* R1(config)# ip access-list extended [Name]
+		* R1(config-ext-nacl)# permit ip host [Source IP] host [Destination IP]
+		* R1(config-ext-nacl)# permit ip any any
 
-Denying pacets to specified IP or Network
+	// Denying packets to specified IP or Network //
 
-* R1(config-ext-nacl)# deny ip [Source Network ID] [Source Subnet] [Dest. Net. IP] [Dest. Subnet] ex. 0.0.0.255
+	* R1(config-ext-nacl)# deny ip [Source Network ID] [Source Subnet] [Dest. Net. IP] [Dest. Subnet] ex. 0.0.0.255
 
+	* R1(config-ext-nacl)# permit ip any any = permit rest the rest.
+	
+	// ASSIGN ACL IN VLAN //
 
-// ASSIGNING ACL TO VLAN //
+	* R1(config)# int vlan [vlan-ID]
+	* R1(config-vlan)# ip access-group [ACL NAME] in (inbound)
 
 
 // INTERFACE CONFIG //
@@ -109,6 +126,10 @@ Denying pacets to specified IP or Network
 * Router(config-subif)# encapsulation dot1q [vlan id] ex. encapsulation dot1q 1
 * Router(config-subif)# ip address [IP] [Subnet Mask]
 * Router(config-subif)# exit
+	
+	// DELETE SUBINTERFACE
+	
+	* Router(config)# no interface [port].[subint]
 
 
 [ SWITCH CONFIGURATION ]
@@ -121,7 +142,8 @@ Denying pacets to specified IP or Network
 * Switch# sh mac add = show MAC table
 * Switch# sh int status or sh int [port] sw = port status
 * Switch# wr = save config
-* Switch# erase startup => reload = factory reset switch
+* Switch# erase startup / erase startup-config => reload = factory reset switch
+* Switch# show ip dhcp binding = show devices which pool they're getting their IPs
 
 
 // GLOBAL CONFIG MODE //
@@ -129,13 +151,23 @@ Denying pacets to specified IP or Network
 * Switch# conf t = enter global mode
 * Switch(config)# host SW1 = set hostname
 * Switch(config)# vlan [1 - 1005] = Create VLAN
+* Switch(config)# no vlan [vlan-id] - delete VLAN
 * Switch(config-vlan)# name [name] = Name VLAN
-	Note: LAYER 3 SWITCH IS CAPABLE OF DHCP POOL ex. Catalyst 3560
 	
-	* Switch(config-vlan)# add [Network ID] [Subnet-Mask]
-	* Switch(config-vlan)# ip routing
-	* Switch# sh ip route
+	Note: LAYER 3 SWITCH IS CAPABLE OF DHCP POOL ex. Catalyst 3560	
 	
+	// SVI (Switch Virtual Interface) // 
+
+	* Switch(config)# int vlan [vlan-id]
+	* Switch(config-if)# add [IP] [Subnet-Mask] ex. 192.168.1.1 255.255.255.0 = default gateway for the assigned vlan
+	* Switch(config-if)# ip routing 
+
+	// ASSIGNING DHCP POOL //
+	
+	* Switch(config)# ip dhcp excluded-address [IP] vlan default gateway.
+	* Switch(config)# ip dhcp pool [name]
+	* Switch(dhcp-config)# net [network-id] [subnet-mask]
+	* Switch(dhcp-config)# default-router [IP]	
 
 // INTERFACE CONFIG //
 
