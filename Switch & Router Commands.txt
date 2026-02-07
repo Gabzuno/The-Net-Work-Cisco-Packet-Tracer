@@ -101,6 +101,18 @@
 
 	R1(config-router)# network/net <network address>
 
+* router eigrp [process-id] = enables routers to use hybrid routing protocol which are distance vector and link-state routing protocol. Usually by Router to Router via Serial.
+
+	R1(config)# router eigrp [1-65535]
+
+	R1(config-router)# net [Network-IP] [opposite-Subnet-mask] ex. 10.0.0.0 0.255.255.255 and 192.168.1.0 0.0.0.255
+
+		Note: Add both the serial and host network IP
+
+	R2(config)# router eigrp [1-65535]
+
+	R2(config-router)# net [Network-IP] [opposite-Subnet-mask]
+
 * router ospf [process-id] = enables routers to dynamically learn network routes using a link-state protocol.
 
 	R1(config-router)# router-id [id]
@@ -181,7 +193,7 @@
 	// SVI (Switch Virtual Interface) // 
 
 	* Switch(config)# int vlan [vlan-id]
-	* Switch(config-if)# add [IP] [Subnet-Mask] ex. 192.168.1.1 255.255.255.0 = default gateway for the assigned vlan
+	* Switch(config-if)# ip add [IP] [Subnet-Mask] ex. 192.168.1.1 255.255.255.0 = default gateway for the assigned vlan
 	* Switch(config-if)# ip routing 
 
 	// ASSIGNING DHCP POOL //
@@ -237,6 +249,7 @@
 	# SET MACHINE PASSWORD / BEFORE ALLOWING PRIVILEGED MODE
 
 		* Router(config)# enable secret [password]
+		* Router9config)# no en secret = remove pass
 
 	# SET PASSWORD
 
