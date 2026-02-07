@@ -1,3 +1,5 @@
+// NETWORK I //
+
 192.168.2.64 / 26
 
 11111111.11111111.11111111.11000000 - 255.255.255.192 - VLSM/Classless
@@ -28,6 +30,8 @@
 192.168.10.128 - 192.168.10.191 - usable is .129 - .190
 192.168.10.192 - 192.168.10.255 - usable is .193 - .254
 
+
+// NETWORK II //
 
 192.168.0.1 /23
 
@@ -64,3 +68,82 @@ subnet masks = /27 255.255.255.224
 network: 192.168.1.32
 usable: 192.168.1.33 - 192.168.1.62
 broadcast: 192.168.1.63
+
+// NETWORK III //
+
+192.168.1.0 /24 = 255.255.255.0
+
+4 Subnets:
+  • LAN 1 = 8 hosts  4th
+  • LAN 2 = 25 hosts 2nd
+  • LAN 3 = 29 hosts 1st
+  • LAN 4 = 13 hosts 3rd
+  • WAN 1 - 4 = 2 * 4 = 8 hosts
+  • VOICE = 4 hosts
+
+total host: 75
+
+# LAN 1
+2^5 >= Hosts => 32 - 2 = 30 >= 29
+usable =  30
+subnet masks = /27
+255.255.255.224 = 1111111.11111111.11111111.11100000
+network: 192.168.1.0
+usable: 192.168.1.1 - 30 
+broadcast: 192.168.1.31
+
+# LAN 2
+2^5 >= hosts => 32 - 2 = 30 >= 25
+usable = 30
+subnet masks = /27
+255.255.255.224
+network: 192.168.1.32
+usable: 192.168.1.33 - 62
+broadcast: 192.168.1.63
+
+# LAN 3
+2^4 >= hosts => 16 - 2 = 14 >= 13
+usable = 14
+subnet masks = /28
+255.255.255.240 = 1111111.11111111.1111111.11110000
+network: 192.168.1.64
+usable:  192.168.1.65 - 78
+broadcast: 192.168.1.79
+
+# LAN 4
+2^4 >= hosts => 16 - 2 = 14 >= 8
+usable = 14
+subnet masks = /28
+255.255.255.240 = 1111111.11111111.11111111.11110000
+network: 192.168.1.80
+usable: 192.168.1.81 - 94 
+broadcast: 192.168.1.95
+
+# WAN 1
+2^2 >= hosts => 4 - 2 = 2 >= 2
+usable = 2
+subnet masks = /30
+255.255.255.252
+network: 192.168.1.96
+usable: 192.168.1.97 - 98
+broadcast: 192.168.1.99
+# WAN 2
+network: 192.168.1.100
+usable: 192.168.1.101 - 102
+broadcast: 192.168.1.103
+# WAN 3
+network: 192.168.1.104
+usable: 192.168.1.105 - 106
+broadcast: 192.168.1.107
+# WAN 4
+network: 192.168.1.108
+usable: 192.168.1.109 - 110
+broadcast: 192.168.1.111
+
+# VOICE
+2^5 >= hosts => 16 - 2 = 14 >= 12
+subnet mask = /28
+255.255.255.240
+network: 192.168.1.112
+usable: 192.168.1.113 - 126
+broadcast: 192.168.1.127

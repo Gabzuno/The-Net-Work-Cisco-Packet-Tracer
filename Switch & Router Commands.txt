@@ -18,6 +18,7 @@
 * Router(config)# host R1 = set hostname
 * R1(config)# ip ro <network> <subnetmask> <gateway> = static routing
 * R1(config)# ip routing = enable IP routing
+* R1(config)# no ip dhcp pool [name] = delete pool
 * R1# sh ip dhcp pool = SHOW DHCP POOL
 
 	// CREATING DHCP POOL //
@@ -104,32 +105,30 @@
 * router eigrp [process-id] = enables routers to use hybrid routing protocol which are distance vector and link-state routing protocol. Usually by Router to Router via Serial.
 
 	R1(config)# router eigrp [1-65535]
+	
+	R1(config-router)# eigrp router-id [0.0.0.0] ex. 1.1.1.1
 
-	R1(config-router)# net [Network-IP] [opposite-Subnet-mask] ex. 10.0.0.0 0.255.255.255 and 192.168.1.0 0.0.0.255
+	R1(config-router)# net [Network-IP] [wildcard-mask]
 
 		Note: Add both the serial and host network IP
+
+		Note: The [wildcard mask] is the inverse of the subnet mask (e.g., /24 is 0.0.0.255).
 
 	R2(config)# router eigrp [1-65535]
 
 	R2(config-router)# net [Network-IP] [opposite-Subnet-mask]
 
 * router ospf [process-id] = enables routers to dynamically learn network routes using a link-state protocol.
+	
+	router(config)# router ospf [1-65535]
 
-	R1(config-router)# router-id [id]
+	R1(config-router)# router-id [0.0.0.0]
 
 	R1(config-router)# net [network-address] [wildcard-mask] area [area-id]
-
-		Note: The [wildcard mask] is the inverse of the subnet mask (e.g., /24 is 0.0.0.255).
 
 	R1(config-router)# passive-interface [interface-id]
 
 		Note: Prevents neighbor adjacencies on networks with no routers.
-
-	R1(config)# router ospf 1
-
-	R1(config-router)# net 192.168.1.0 0.0.0.255 area 0
-
-	R1(config-router)# passive-interface g0/0
 
 
 // HSRP (Hot Standby Router Protocol //

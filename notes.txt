@@ -36,6 +36,11 @@ Class-Based Network
    • Class B: 128.0.0.0 - 191.255.25.255 - default subnet mask /16
    • Class C: 192.0.0.0 - 223.255.255.255 - default subnet mask /24
 
+Private IPv4 IPs
+   • 10.0.0.0/8 - 10.0.0.0 - 10.255.255.255
+   • 172.16.0.0/12 - 172.16.0.0 - 172.31.255.255
+   • 192.168.0.0/16 - 192.168.0.0 - 192.168.255.255
+
 DEFAULT TTL FOR DEVICES
    • WINDOWS PC: 128
    • ROUTERS: 255
