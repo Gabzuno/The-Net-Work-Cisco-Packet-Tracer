@@ -157,12 +157,12 @@ broadcast: 192.168.1.111
      usable: 192.168.1.121 - 192.168.1.126
      broadcast: 192.168.1.127
 
-# VOIP_LAN1
+# VOIP_LAN3
      network: 192.168.1.128
      usable: 192.168.1.129 - 192.168.1.134
      broadcast: 192.168.1.135
 
-# VOIP_LAN1
+# VOIP_LAN4
      network: 192.168.1.136
      usable: 192.168.1.137 - 192.168.1.142
      broadcast: 192.168.1.143
