@@ -49,6 +49,12 @@
 		* R1(config)# ephone-dn [PHONE ID ex.1]
 		* R1(config)# number [PHONE NUMBER ex. 2001]
 		* R1# do wr 
+
+		// DIAL PEER OVER NETWORK //
+
+		* R1(config)# dial-peer voice [1-2147483647 & should be identical to other routers] voip
+		* R1(config-dial-peer)# destination-pattern 2.. (means 200 - 299) ex. 1.. = 100 to 199
+		* R1(config-dial-peer)# session target ipv4: [IP OF CONNECTED ROUTERS] ex. 10.0.0.1
 			
 			Note: Router models with VoIP features: 2811, 2911, 1941.
 
