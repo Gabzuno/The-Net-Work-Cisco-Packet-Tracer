@@ -126,7 +126,7 @@
 
 * router ospf [process-id] = enables routers to dynamically learn network routes using a link-state protocol.
 	
-	router(config)# router ospf [1-65535]
+	R1(config)# router ospf [1-65535]
 
 	R1(config-router)# router-id [0.0.0.0]
 
@@ -137,6 +137,22 @@
 		Note: Prevents neighbor adjacencies on networks with no routers.
 
 	R1# sh ip ospf neighbor = show listed routers with OSPF configured.
+
+	R1# sh ip ospf database = show listed networks connected through specific area.
+
+* router bgp [autonomous-id] = is standardized exterior gateway protocol that runs the entire internet.
+
+	R1(config)# router bgp [1-65535]
+	
+	R1(config-router)# bgp router-id [0.0.0.0]
+	
+	R1(config-router)# neighbor [IP connected routers] remote-as [autonomous-id of the connected routers]
+
+	R1(config-router)# net [network IP] mask [subnet-mask] - connected networks
+
+	R1# sh ip bgp neighbor = sh all connected neighbors
+	
+	R1# sh ip bgp summary = summarized list of connected neighbors
 
 // HSRP (Hot Standby Router Protocol //
 
