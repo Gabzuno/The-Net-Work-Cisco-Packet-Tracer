@@ -108,7 +108,7 @@
 
 	R1(config-router)# network/net <network address>
 
-* router eigrp [process-id] = enables routers to use hybrid routing protocol which are distance vector and link-state routing protocol. Usually by Router to Router via Serial.
+* router eigrp [process-id] = enables routers to use hybrid routing protocol which are distance vector and link-state routing protocol.
 
 	R1(config)# router eigrp [1-65535]
 	
@@ -136,6 +136,7 @@
 
 		Note: Prevents neighbor adjacencies on networks with no routers.
 
+	R1# sh ip ospf neighbor = show listed routers with OSPF configured.
 
 // HSRP (Hot Standby Router Protocol //
 
