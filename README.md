@@ -148,4 +148,23 @@
   <li>
     <b>Network Topology</b> - is a visual map to understand the physical or logical structure of a computer network. The locations of the devices and cables in the network are among the factors that determine the network topology.
   </li>
+  <li><b>EtherChannel</b> - Allows multiple physical Fast Ethernet links to combine into one logical channel. Maximum of 8 links can be aggregated to form a single logical link. Criteria to form an EtherChannel, all ports should have:
+    <ul>
+      <li>Same Duplex</li>
+      <li>Same Speed</li>
+      <li>Same VLAN Config (i.e., native VLAN and allowed VLAN)</li>
+      <li>switch port modes should be same(access or trunk)</li>
+      <li><b>EtherChannel Protocols</b>
+        <ol>
+          <li><b>Port Aggregation Protocol (PAgP)</b> - is a Cisco proprietary protocol used to form an EtherChannel.
+            <ul>
+              <li><b>ON:</b> In this mode, the interface will be a part of EtherChannel but no negotiation takes place.</li>
+              <li><b>DESIRABLE:</b> In this mode, the interface will continuously attempt to convert other side of the interface into an EtherChannel.</li>
+              <li><b>AUTO:</b> In this mode, the interface will become a part of EtherChannel if and only if it is requested by the opposite interface.</li>
+              <li><b>OFF:</b> In this mode, No EtherChannel configured on the interface.</li>
+            </ul>
+          </li>
+        </ol>
+    </ul>
+  </li>
 </ol>
