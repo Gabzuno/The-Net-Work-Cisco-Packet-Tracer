@@ -113,10 +113,19 @@
 
 <ol>
   <li>
+    <b>RIP (Routing Information Protocol)</b> - is an older, simple distance-vector interior gateway protocol (IGP) designed for small networks, using hop count as a metric (max 15) to determine the best path. It runs on UDP port 520, sharing full routing tables every 30 seconds. 
+  </li>
+  <li>
     <b>EIGRP (Enhanced Interior Gateway Routing Protocol)</b> - is a Cisco proprietary protocol. Considered to be easier to configure and manage than OSPF. It uses a <b style="color:MediumSeaGreen;">hybrid routing protocol</b> that combines features of both <b style="color:MediumSeaGreen;">distance vector</b> and <b style="color:MediumSeaGreen;">link-state</b> routing protocols. To calculate the best path to a destination, it uses a composite metric that takes into account factors such as bandwidth, delay, reliability, and load. Supports different  network topologies, including hub-and-spoke, point-to-point, and mesh.
     </li>
   <li>
     <b>OSPF (Open Shortest Path First)</b> - is an open standard protocol. Suited for larger networks with complex topologies. It uses <b style="color:MediumSeaGreen;">pure link-state</b> protocol. To calculate the best path to a destination, OSPF uses a cost-based metric that is calculated based on the bandwith of the links.
+  </li>
+  <li>
+    <b>BGP (Border Gateway Protocol)</b> - is the standardized exterior gateway protocol designed to exchange routing and reachability information among autonomous systems (AS) on the Internet, serving as the "postal service" or "GPS" for Internet traffic. It determines the most efficient paths for data transmission across the internet's network of networks, connecting ASs managed by ISPs, corporations, or universities. 
+  </li>
+  <li>
+    <bi>IS-IS (Intermediate System to Intermediate System)</bi> - is a robust, scalable link-state Interior Gateway Protocol (IGP) used to efficiently move data within large enterprise and service provider networks. It operates directly at Layer 2 (Data Link Layer), allowing it to efficiently route IPv4 and IPv6, while supporting rapid convergence, hierarchical design, and high stability. 
   </li>
   <li>
     <b>FLSM (Fixed Length Subnet Masks)</b> - is an IP subnetting method where all created subnets are the same size, using the same subnet mask, which simplifies configuration but can waste IP addresses if network segments have different host needs, unlike its counterpart VLSM (Variable Length Subnet Mask).

@@ -44,3 +44,7 @@ Private IPv4 IPs
 DEFAULT TTL FOR DEVICES
    • WINDOWS PC: 128
    • ROUTERS: 255
+
+VTP (VLAN Trunking Protocol) Modes
+   • Client - can't change its VLAN configuration (cannot create or delete VLANs). But can process and forward vlans.
+   • Server - can create and delete VLANs. This is the default mode for cisco switches.

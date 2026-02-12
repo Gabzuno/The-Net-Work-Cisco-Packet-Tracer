@@ -207,6 +207,7 @@
 * Switch(config)# host SW1 = set hostname
 * Switch(config)# vlan [1 - 1005] = Create VLAN
 * Switch(config)# no vlan [vlan-id] - delete VLAN
+* Switch(config)# no ip domain lookup - prevent unnecessary DNS lookup
 * Switch(config-vlan)# name [name] = Name VLAN
 * Switch(config-if)# no switchport access vlan [VLAN_ID] = Remove the port from its current VLAN
 	
@@ -217,6 +218,7 @@
 	* Switch(config)# int vlan [vlan-id]
 	* Switch(config-if)# ip add [IP] [Subnet-Mask] ex. 192.168.1.1 255.255.255.0 = default gateway for the assigned vlan
 	* Switch(config-if)# ip routing 
+	* Switch(config)# ip default-gateway [GATEWAY IP]
 
 	// ASSIGNING DHCP POOL //
 	
@@ -241,8 +243,10 @@
 
 	* Switch(config-if)# sw mo trunk(switchport mode trunk) - carry traffic for multiple VLANs using 802.1Q tagging for inter-switch communication. Uplinks between switches,
 	connections to routers.
-	* Switch(config-if or config-if-range)# sw trunk allowed vlan \[ID]
-	* Switch(config-if or config-if-range)# sw trunk allowed vlan 10,20,30,etc.
+	* Switch(config-if or config-if-range)# sw trunk allowed vlan [VLAN-IDs] ex. 10,20, etc.
+	* Switch(config-if or config-if-range)# sw trunk allowed vlan none - no vlan allowed to the trunk port.
+	* Switch(config-if or config-if-range)# sw trunk allowed vlan all - allows all vlan.
+	* Switch(config-if or config-if-range)# sw trunk allowed vlan except [VLAN-IDs] - allows except the specified vlan. 
 	* Switch# sh int [port] trunk = view trunking of the specified port.
 
 		Note: If using Layer 3 Switch, capable of routing:
@@ -250,6 +254,18 @@
 		* Switch(config-if or config-if-range)# sw trunk encapsulation [dot1q (802.1Q), ISL, negotiate]
 
 		Note: Layer 2 switch automatically assigned their encapsulation into dot1q (recommended).
+
+		// VTP (VLAN TRUNKING PROTOCOL //
+		
+		* Server-SW(config)# vtp mode server
+		* Server-SW(config)# vtp domain [domain.com]
+		* Server-SW(config)# vtp password [pass]
+		* Server-SW(config)# vtp version [1/2]
+
+		*Client-SW(config)# vtp mode client
+		*Client-SW(config)# vtp domain [domain.com]
+		*Client-SW(config)# vtp pass [pass]
+		*Client-SW(config)# vtp version [1/2]
 
 	/// VOICE ///
 
@@ -293,11 +309,9 @@
  // VTY (Virtual Teletype) = REMOTE //
 
 
-* Router(config)# line vty 0 4
+* Router(config)# line vty 0 4 = 5 users running session simultaneously. 
 
 	Note: VTY = remote access either SSH or telnet
-
-	0 4 = 5 users running session simultaneously. 
 
 * Router(config-line)# transport input [protocol] = controls which protocols are allowed.
 
