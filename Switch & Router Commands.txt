@@ -275,10 +275,17 @@
 
 	// ETHERCHANNEL CONFIGURATION //
 		
-		// PORT AGGREGATION PROTOCOL (PAgP) //
+		// PORT AGGREGATION PROTOCOL (PAgP) // - CISCO ONLY
 
 		* SW1# sh etherchannel w/wo summary - view channel
-		* SW1(config-if or config-if-range)# channel-group [1-6] [mode] - create channel 
+		* SW1(config-if or config-if-range)# channel-group [1-6] [mode] - create channel - [desirable] for source, [auto] for destination
+		* SW1(config)# int port-channel [channel-group] - assign channel to port
+		* SW1(config)# sw mo trunk/access - assign port mode to the channel
+
+		// LINK AGGREGATION CONTROL PROTOCOL (LACP) // - VENDOR NEUTRAL - IEEE 802.3ad-ax - RECOMMENDED
+
+		* SW1# sh etherchannel w/wo summary - view channel
+		* SW1(config-if or config-if-range)# channel-group [1-6] [mode] - create channel - [active] for source, [pass] for destination
 		* SW1(config)# int port-channel [channel-group] - assign channel to port
 		* SW1(config)# sw mo trunk/access - assign port mode to the channel
 

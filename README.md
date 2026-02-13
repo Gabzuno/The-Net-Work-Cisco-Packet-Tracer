@@ -164,7 +164,14 @@
               <li><b>OFF:</b> In this mode, No EtherChannel configured on the interface.</li>
             </ul>
           </li>
-          <li><b>Link Aggregation Control Protocol (LACP)</b> - is an IEEE 802.3ad standard protocol that combines multiple physical Ethernet links into a single, high-bandwidth logical link (a Link Aggregation Group or LAG). It enhances network reliability, provides automatic failover if a link fails, and enables dynamic configuration between switches, routers, and servers. </li>
+          <li><b>Link Aggregation Control Protocol (LACP)</b> - is an IEEE 802.3ad standard protocol that combines multiple physical Ethernet links into a single, high-bandwidth logical link (a Link Aggregation Group or LAG). It enhances network reliability, provides automatic failover if a link fails, and enables dynamic configuration between switches, routers, and servers.
+            <ul>
+              <li><b>ON:</b> In this mode, the interface will be a part of EtherChannel but no negotiation takes place.</li>
+              <li><b>ACTIVE:</b> In this mode, the interface will continuously attempt to convert other side of the interface into an EtherChannel.</li>
+              <li><b>PASSIVE:</b> In this mode, the interface will become a part of EtherChannel if and only if it is requested by the opposite interface.</li>
+              <li><b>OFF:</b> In this mode, No EtherChannel configured on the interface.</li>
+            </ul> 
+          </li>
         </ol>
     </ul>
   </li>
