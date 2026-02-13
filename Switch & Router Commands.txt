@@ -273,6 +273,16 @@
 	* Switch(config-if)# no shut = enable port interface
 
 
+	// ETHERCHANNEL CONFIGURATION //
+		
+		// PORT AGGREGATION PROTOCOL (PAgP) //
+
+		* SW1# sh etherchannel w/wo summary - view channel
+		* SW1(config-if or config-if-range)# channel-group [1-6] [mode] - create channel 
+		* SW1(config)# int port-channel [channel-group] - assign channel to port
+		* SW1(config)# sw mo trunk/access - assign port mode to the channel
+
+
 [ LINE CONFIGURATION (Router \& Switch) ]
 
 
@@ -335,7 +345,7 @@
 
 	* Router(config-line)# login local
 
-	* Router(config-line)# exec-timeout 10 0
+	* Router(config-line)# exec-timeout 15 0 - 15 mins
 
 	* Router(config-line)# end
 
