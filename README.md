@@ -172,6 +172,12 @@
               <li><b>OFF:</b> In this mode, No EtherChannel configured on the interface.</li>
             </ul> 
           </li>
+          <li><b>Manual EtherChannel Configuration (Static)</b> - directly binds physical switch ports into a single logical channel without using negotiation protocols like LACP or PAgP. It requires identical settings—speed, duplex, and VLANs—on both ends, as misconfiguration can lead to packet loss or spanning-tree loops. 
+            <ul>
+              <li><b>ON:</b> In this mode, the interface will be a part of EtherChannel but no negotiation takes place.</li>
+              <li><b>OFF:</b> In this mode, No EtherChannel configured on the interface.</li>
+            </ul> 
+          </li>
         </ol>
     </ul>
   </li>

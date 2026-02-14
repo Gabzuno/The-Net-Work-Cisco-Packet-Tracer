@@ -289,6 +289,10 @@
 		* SW1(config)# int port-channel [channel-group] - assign channel to port
 		* SW1(config)# sw mo trunk/access - assign port mode to the channel
 
+		// MANUAL (STATIC) //
+		
+		* SW1(config-if or config-if-range)# channel-group [1-6] mode [on/of]
+
 
 [ LINE CONFIGURATION (Router \& Switch) ]
 
