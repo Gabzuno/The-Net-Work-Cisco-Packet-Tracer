@@ -195,7 +195,8 @@
 * Switch> en = enable privileged mode
 * Switch# sh vlan br = VLAN Summary
 * Switch# sh mac add = show MAC table
-* Switch# sh int status or sh int [port] sw = port status
+* Switch# sh int st/status - show port status (quick check)
+* Switch# sh int [port] sw - show port status (detailed)
 * Switch# wr = save config
 * Switch# erase startup / erase startup-config => reload = factory reset switch
 * Switch# show ip dhcp binding = show devices which pool they're getting their IPs
