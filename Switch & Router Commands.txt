@@ -191,7 +191,7 @@
 
 
 // EXEC/PRIVILEGED //
-
+	
 * Switch> en = enable privileged mode
 * Switch# sh vlan br = VLAN Summary
 * Switch# sh mac add = show MAC table
@@ -226,7 +226,57 @@
 	* Switch(config)# ip dhcp excluded-address [IP] vlan default gateway.
 	* Switch(config)# ip dhcp pool [name]
 	* Switch(dhcp-config)# net [network-id] [subnet-mask]
-	* Switch(dhcp-config)# default-router [IP]	
+	* Switch(dhcp-config)# default-router [IP]
+
+	// SPANNING TREE PROTOCOL (STP) Configuration //
+
+	* SW1# sh spanning-tree - display spanning-tree status.
+
+	# By default, connecting 3 or more switches to each other will enable the STP and automatically elects a root bridge and calculate best path using Bridge Protocol Data Units 		(BPDU).
+		
+		* SW1# show spanning-tree inconsistentports - check if there's an inconsistency with the root port.
+		* SW1(config)# spanning-tree vlan [vlan-id] priority [0-61440] - manually assign priority for the spanning tree.
+
+		// Assigning Root Bridge (Primary) Manually //
+	
+			* SW1(config)# spanning-tree mode [pvst/rapid-pvst]
+			* SW1(config)# spanning-tree vlan [vlan number] root primary
+
+		// Assigning Non-Root Bridge (Secondary) Manually //
+
+			* SW1(config)# spanning-tree mode [pvst/rapid-pvst]
+			* SW1(config)# spanning-tree vlan [vlan number] root secondary
+
+		// Bypassing Port State Process using Portfast //
+
+			* SW1(config)# int r [ports]
+			* SW1(config-if-range)# sw mo acc
+			* Sw1(config-if-range)# spanning-tree portfast
+
+		// Blocked unknown switch connection, preventing broadcast storm using BPDUGuard
+
+			* Sw1(config-if-range)#spanning-tree bpduguard enable
+
+		// Assigning Tree Root Guard //
+			
+			- Spanning Tree Root Guard prevents an unintended switch from becoming the root bridge.
+			- Recommended to be used on the core and distribution layers on ports that face away from the primary and secondary root bridge.
+			
+			* SW1(config)# int [port] - uninteded switch/old switch
+			* SW1(config-if) spanning-tree guard root
+		
+		// Enable Portfast, BPDUGuard, and Uplinkfast in global config
+
+			* SW1(config)# spanning-tree portfast default
+			* SW1(config)# spanning-tree bpduguard default
+
+			// Recover accidental block from bpduguard //
+
+			- Blocked switches from bpduguard cannot recover by itself. 
+			
+			* S2# show err-disable recovery - verify current errdisable settings	
+			* SW2(config)# err-disable recovery cause bpduguard
+			* SW2(config)# err-disable recovery interval [seconds ex. 300s/5mins]
 
 // INTERFACE CONFIG //
 

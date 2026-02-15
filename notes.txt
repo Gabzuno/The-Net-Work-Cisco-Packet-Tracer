@@ -48,3 +48,8 @@ DEFAULT TTL FOR DEVICES
 VTP (VLAN Trunking Protocol) Modes
    • Client - can't change its VLAN configuration (cannot create or delete VLANs). But can process and forward vlans.
    • Server - can create and delete VLANs. This is the default mode for cisco switches.
+
+STP (Spanning Tree Protocol)
+   - is a layer 2 network protocol designed to prevents loops in Ethernet networks while allowing for link redundancy.
+   - ensures there's only one active logical path between any two devices.
+   - 

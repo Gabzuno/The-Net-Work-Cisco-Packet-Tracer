@@ -181,4 +181,79 @@
         </ol>
     </ul>
   </li>
+  <li><b>STP (Spanning Tree Protocol)</b> - a Layer 2 network protocol that ensures a loop-free, logical topology in Ethernet networks with redundant links. By blocking redundant paths and keeping a single active link, STP prevents broadcast storms and bridge loops. It uses Bridge Protocol Data Units (BPDUs) to elect a root bridge and calculate the most efficient path. 
+    <ol>
+      <li><b>Electing a Root Bridge</b> - The lowest bridge id value will be elected as the root bridge. <b>Criteria are Priority + VLAN numbers</b>, which can be configured for influncing the election process. The lowest priority value are preferred, its default value is 32768. <b>System MAC Address</b> is the second part and only be used when there's a <b>tie</b>, means there's two or more switches with the same priority value.</li>
+      <li><b>Root Port Selection</b> - each non-root bridge selects one root port (RP), which is the port with the lowest cumulative path cost to the root bridge. If costs are equal, it chooses the port with the lowest neighbor bridge ID, then the lowest sender port ID. All root ports are set to forwarding.
+      <br>
+      <br>
+        <ul>
+          <table style="width:100%">
+            <tr>
+              <th>Port Roles</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td>Root Port</th>
+              <td>Represent the best path towards the Root Bridge</th>
+            </tr>
+            <tr>
+              <td>Designated Port</th>
+              <td>Points away from the root</th>
+            </tr>
+            <tr>
+              <td>Blocked Port</th>
+              <td>Does not forward any Ethernet Traffic. But still listens BPDU, which can be an alternative port when the main path fails.</th>
+            </tr>
+          </table>
+          <li><b>Root Path Cost</b> - depends on the speed of the ports:
+            <br>
+            <br>
+            <table style="width:100%">
+              <tr>
+                <th>STP Cost</th>
+                <th>Port Speed</th>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>10Gbps</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>1Gbps</td>
+              </tr>
+              <tr>
+                <td>19</td>
+                <td>100Mbps</td>
+              </tr>
+              <tr>
+                <td>100</td>
+                <td>10Mbps</td>
+              </tr>
+            </table>
+            <p>If there's a tie, here's a sequential process till the lowest port number:</p>
+            <table style="width:100%">
+              <tr>
+                <th>First</th>
+                <th>Second</th>
+                <th>Third</th>
+                <th>Fourth</th>
+              </tr>
+              <tr>
+                <td>Lowest Path Cost</td>
+                <td>Lowest Bridge ID</td>
+                <td>Lowest Port Priority</td>
+                <td>Lowest Port Number</td>
+              </tr>
+            </table>
+          </li>
+          <li><b>STP Port States</b> - to manage how switch ports behave to prevent network loop. Also determine the roles of each ports on process.
+            <p align="center">
+              <img src="assets/img/Port State.png" alt="Port States">
+            </p>
+          </li>
+        </ul> 
+      </li>
+    </ol>
+  </li>
 </ol>
