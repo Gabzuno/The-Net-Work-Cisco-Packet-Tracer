@@ -419,7 +419,16 @@
 
 // MEMORY //
 
-	* Router# copy run start / copy running-config startup-config - saves run (RAM) to start (VRAM)
+	- running-config is the current active config from RAM
+	- start-config is saved config in VRAM that loads on reboot
+
+	// BACKUP //
+
+		* Router# copy run start / copy running-config startup-config - saves run (RAM) to start (VRAM)
+
+	// RECOVER //
+
+		* Router# copy start run / copy startup-config running-config
 
 // TFTP SERVER //
 
