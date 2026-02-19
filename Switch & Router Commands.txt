@@ -323,6 +323,29 @@
 	* Switch(config-if or config-if-range)# sw voice vlan [VLAN-ID]
 	* Switch(config-if)# no shut = enable port interface
 
+	// PREVENTING VLAN HOPPING //
+	# is a method of attacking the network resources of the VLAN by sending packets to a port not usually accessible from an end system.
+	# The main goal of this form of attack is to gain access to other VLANs on the same network.
+	# occurs through:
+		• Double tagging - when threat actors add and modfy tags on the ethernet frame. Enables the sending of packets through VLANs as the native untagged VLAN on the trunk and takes advantage of several switches that process tags.
+		• Switch Spoofing - when attacker send Cisco's Dynamic Trunking Protocol (DTP) packets to negotiate a trunk with a switch. It is possible only when using the dynamic auto or dynamic desirable default switch mode. Once there is a trunk connected to the computer, the attacker gains access to all VLANs. A misconfiguration as interfaces should not be configured to use the dynamic switch port mode.
+
+		// FOR TRUNK PORTS //
+		
+		*SW1(config)# int r [ports]
+		*SW1(config-if-range)# sw mo trunk
+		*SW1(config-if-range)# sw trunk native vlan [vlan-id] - id should be dedicated for the native vlan.
+		*SW1(config-if-range)# sw nonegotiate - Device will not engage in negotiation protocol on this interface.
+
+		// FOR ACCESS PORTS //
+
+		*SW1(config-if-range)# sw mo acc
+		*SW1(config-if-range)# sw acc vlan [vlan-id]
+		*SW1(config-if-range)# sw nonegotiate
+
+		// DISABLING DTP //
+
+		*SW1(config)# no cdp run
 
 	// ETHERCHANNEL CONFIGURATION //
 		
