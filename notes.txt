@@ -45,6 +45,18 @@ DEFAULT TTL FOR DEVICES
    • WINDOWS PC: 128
    • ROUTERS: 255
 
+STANDARD ACCESS CONTROL LIST (ACL)
+   • From 1 to 99
+   • applied closest to the destination
+   • denies or permits source IP Address
+
+EXTENDED ACCESS CONTROL LIST
+   • From 100 - 199
+   • applied closest to the source
+   • denies or permits source IP Address
+   • denies or permits destination IP Address,
+   • denies or permits port (service)
+
 VTP (VLAN Trunking Protocol) Modes
    • Client - can't change its VLAN configuration (cannot create or delete VLANs). But can process and forward vlans.
    • Server - can create and delete VLANs. This is the default mode for cisco switches.
@@ -52,4 +64,3 @@ VTP (VLAN Trunking Protocol) Modes
 STP (Spanning Tree Protocol)
    - is a layer 2 network protocol designed to prevents loops in Ethernet networks while allowing for link redundancy.
    - ensures there's only one active logical path between any two devices.
-   - 

@@ -256,4 +256,24 @@
       </li>
     </ol>
   </li>
+  <li><b>DHCP Snooping</b> - is a security technology on a Layer 2 network switch that can prevent unauthorized DHCP Servers from accessing your network.
+  </li>
+  <li><b>Address Resolution Protocol (ARP)</b>  -is a fundamental networking protocol used to map a dynamic, logical IP address (Layer 3) to a fixed, physical MAC address (Layer 2) on a local area network (LAN). When a device wants to communicate with another device on the same network, it uses ARP to find the destination's MAC address if only the IP address is known. To improve efficiency, devices store these mappings in an "ARP cache" (or table) to avoid repeating the broadcast process for every packet.
+  </li>
+  <li><b>Dynamic ARP Inspection (DAI)</b> - is a security feature that rejects invalid and malicious ARP Packets.
+    <ul>
+      <li>DAI relies on DHCP Snooping</li>
+      <li>DHCP snooping listens to DHCP message exchanges</li>
+      <li>DHCP builds a bindings database of valid tuples:</li>
+        <ul>
+          <li>MAC Address</li>
+          <li>IP Address</li>
+          <li>VLAN Interface</li>
+        </ul>
+    </ul>
+  </li>
+  <li><b>IP Source Guard</b> - prevents IP and/or MAC address spoofing attacks on untrusted layer two interfaces.
+    <br>
+    • Source guard relies on DHCP Snooping database to do its work. Only used on layer two (access and trunk) interfaces and it only works inbound.
+  </li>
 </ol>
