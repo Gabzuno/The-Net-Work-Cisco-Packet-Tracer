@@ -52,4 +52,3 @@ VTP (VLAN Trunking Protocol) Modes
 STP (Spanning Tree Protocol)
    - is a layer 2 network protocol designed to prevents loops in Ethernet networks while allowing for link redundancy.
    - ensures there's only one active logical path between any two devices.
-   - 

@@ -172,7 +172,7 @@
  	* R2(config-if)# standby [ID] priority [0-255] default 100 ex. 10 priority 110
  	* R2(config-if)# standby [ID] preempt
 
-	# if R1 shutdowns, R2 will be active and takeover DHCP relay. If R1 comes online, it will takeover the DHCP relay again since it has the higher ID. While, R2 will go back to 		standby. 
+	# if R1 shutdowns, R2 will be active and takeover DHCP relay. If R1 comes online, it will takeover the DHCP relay again since it has the higher ID. While, R2 will go back to standby. 
 
 
 // SUBINTERFACE CONFIG (VLAN) //
@@ -208,6 +208,7 @@
 * Switch(config)# host SW1 = set hostname
 * Switch(config)# vlan [1 - 1005] = Create VLAN
 * Switch(config)# no vlan [vlan-id] - delete VLAN
+* Switch(config)# do sh ip arp inspec in - show trusted and untrusted DAI
 * Switch(config)# no ip domain lookup - prevent unnecessary DNS lookup
 * Switch(config-vlan)# name [name] = Name VLAN
 * Switch(config-if)# no switchport access vlan [VLAN_ID] = Remove the port from its current VLAN
@@ -227,6 +228,27 @@
 	* Switch(config)# ip dhcp pool [name]
 	* Switch(dhcp-config)# net [network-id] [subnet-mask]
 	* Switch(dhcp-config)# default-router [IP]
+
+	// CONFIGURE DHCP SNOOPING //
+
+	* SW1(config)# ip dhcp snooping
+	* SW1(config)# int r [trusted-ports]
+	* SW1(config-if-range)# ip dhcp snooping trust
+	# Assign dhcp snooping to the VLAN that is currently being used.
+	* SW1(config)# ip dhcp snooping vlan [vlan-id]
+		
+		// Enabling ARP Inspection for DAI //
+		
+		* SW1(config)# ip arp inspection vlan [vlan-id]
+
+		// Trusted Ports for IP ARP Inspection for DAI
+
+		* SW1(config-if or config-if-range)# ip arp inspection trust
+	
+		// Verify IP source for truested port //
+
+		* SW1(config-if or config-if-range)# ip verify source
+
 
 	// SPANNING TREE PROTOCOL (STP) Configuration //
 
