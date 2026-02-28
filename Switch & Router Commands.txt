@@ -459,27 +459,27 @@
 
 /// SETUP AN SSH ///
 
-	* Router(config)# username [name] secret [pass]
+	* Router/SW(config)# username [name] secret [pass]
 
-	* Router(config)# enable secret [pass] 
+	* Router/SW(config)# enable secret [pass] 
 
-	* Router(config)# ip domain-name [domain ex. lab.local] (necessary)
+	* Router/SW(config)# ip domain-name [domain ex. lab.local] (necessary)
 
-	* Router(config)# crypto key generate rsa
+	* Router/SW(config)# crypto key generate rsa
 
-	* Router(config)# ip ssh version 2
+	* Router/SW(config)# ip ssh version 2
 
-	* Router(config)# line vty 0 4
+	* Router/SW(config)# line vty 0 4
 
-	* Router(config-line)# transport input ssh
+	* Router/SW(config-line)# transport input ssh
 
-	* Router(config-line)# login local
+	* Router/SW(config-line)# login local
 
-	* Router(config-line)# exec-timeout 15 0 - 15 mins
+	* Router/SW(config-line)# exec-timeout 15 0 - 15 mins
 
-	* Router(config-line)# end
+	* Router/SW(config-line)# end
 
-	* Router# wr = save the config to the machine's VRAM/Boot
+	* Router/SW# wr = save the config to the machine's VRAM/Boot
 
 
 [ WAYS TO BACKUP THE ROUTER/SWITCH CONFIGURATION ]
