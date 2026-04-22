@@ -4,7 +4,7 @@
 // EXEC/PRIVILEGED MODE //
 
 * Router> en / enable = enter privileged mode
-* Router# sh r / run = show running-config
+* Router# sh r / run = show running-config - Switch Status
 * Router# sh ip ro / route = show routing table
 * Router# sh ip int br = interface status
 * Router# sh ver = IOS & Hardware info
@@ -206,16 +206,19 @@
 
 * Switch# conf t = enter global mode
 * Switch(config)# host SW1 = set hostname
-* Switch(config)# vlan [1 - 1005] = Create VLAN
-* Switch(config)# no vlan [vlan-id] - delete VLAN
 * Switch(config)# do sh ip arp inspec in - show trusted and untrusted DAI
 * Switch(config)# no ip domain lookup - prevent unnecessary DNS lookup
+
+// VIRTUAL LAN (VLAN) //
+
+* Switch(config)# vlan [1 - 1005] = Create VLAN
+* Switch(config)# no vlan [vlan-id] - delete VLAN
 * Switch(config-vlan)# name [name] = Name VLAN
 * Switch(config-if)# no switchport access vlan [VLAN_ID] = Remove the port from its current VLAN
 	
 	Note: LAYER 3 SWITCH IS CAPABLE OF DHCP POOL ex. Catalyst 3560	
 	
-	// SVI (Switch Virtual Interface) // 
+	// SVI (Switch Virtual Interface) // - Giving switch an IP
 
 	* Switch(config)# int vlan [vlan-id]
 	* Switch(config-if)# ip add [IP] [Subnet-Mask] ex. 192.168.1.1 255.255.255.0 = default gateway for the assigned vlan
@@ -231,6 +234,10 @@
 		// DESTINATION //
 		
 		* SW1(config-if-range)# ip access-group [<1-199> or WORD] [in/out] ex. ip access-group 1 out
+
+		// DELETE ACL //
+		
+		* SW1(config)# no access-list [ID]
 
 	// ASSIGNING DHCP POOL //
 	
@@ -498,7 +505,7 @@
 
 		* Router# copy start run / copy startup-config running-config
 
-// TFTP SERVER //
+// TFTP SERVER // - Trivial File Transfer Protocol - lightweight File Transfer Protocol (FTP) - uses User Datagram Protocol (UDP) port 69.
 
  Turned on the TFTP and assigned an IP same as router's network
 	
