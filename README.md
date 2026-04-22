@@ -61,7 +61,7 @@
 <img src="assets/img/CIDR.png">
 
 <h3>List of IPs that cannot be use:</h3>
-<img src="assets/img/reservedIPs.png">
+<img src="assets/img/reservedIP.png">
 
 <br>
 
