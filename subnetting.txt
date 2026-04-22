@@ -83,8 +83,6 @@ broadcast: 192.168.1.63
 
 total host: 75
 
-DHCP SERVER - 192.168.10.0 /24
-
 # LAN 3
 2^5 >= Hosts => 32 - 2 = 30 >= 29
 usable =  30
@@ -166,3 +164,118 @@ broadcast: 192.168.1.111
      network: 192.168.1.136
      usable: 192.168.1.137 - 192.168.1.142
      broadcast: 192.168.1.143
+
+
+// NETWORK IV //
+
+192.168.10.0/24
+255.255.255.0
+
+4 subnets:
+
+• IT Dept - 50 hosts
+• HR Dept - 25 hosts
+• Finance Dept - 10 hosts
+• Management - 5 hosts
+
+total hosts: 90 hosts
+
+LAN 1 - IT Dept
+2^6 >= hosts => 64 - 2 = 62 >= 50
+available hosts: 62
+subnetmask mask: 255.255.255.192 /26
+network: 192.168.10.0
+usable: 192.168.10.1 - 	192.168.10.62
+broadcast: 192.168.10.63
+
+LAN 2 - HR Dept
+2^5 >= hosts => 32 - 2 = 30 >= 25
+available hosts: 30
+mask:255.255.255.224 /27
+network: 192.168.10.64
+usable: 192.168.10.65 - 192.168.10.94
+broadcast: 192.168.10.95
+
+LAN 3 - Finance Dept - 10 hosts
+2^4 >= hosts => 16 - 2 = 14 >= 10
+available hosts: 14
+mask: 255.255.255.240 /28
+network: 192.168.10.96
+usable: 192.168.10.97 - 192.168.10.110
+broadcast: 192.168.10.111
+
+LAN 4 - Management
+2^3 >= hosts => 8 - 2 = 6 >= 5
+usable hosts: 6
+mask: 255.255.255.248 /29
+network: 192.168.10.112
+usable: 192.168.10.113 - 192.168.10.118
+broadcast: 192.168.10.119
+
+Available: 135 IPs
+address: 192.168.10.120-192.168.10.255
+
+
+// NETWORK V //
+
+10.20.30.0 /23
+255.255.255.0
+
+6 subnets
+• Engineering - 80
+• Sales - 40
+• HR - 20
+• IT - 12
+• Exec - 6
+• Future - 50
+
+total hosts: 158 + x
+
+LAN 1 - Engineering
+2^7 >= hosts => 128 - 2 = 126 >= 80
+usable hosts: 126
+mask: 255.255.255.128 /25
+network: 10.20.30.0
+usable: 10.20.30.1 - 10.20.30.126
+broadcast: 10.20.30.127
+
+LAN 2 - Future
+
+2^6 >= hosts => 64 - 2 = 62 >= 50
+mask: 255.255.255.192 /26
+network: 10.20.30.128
+usable: 10.20.30.129 - 10.20.30.190
+broadcast:10.20.30.191
+
+LAN 3 - Sales
+2^6 >= hosts => 64 -2 = 62 >= 40
+mask: 255.255.255.192 /26
+network: 10.20.30.192
+usable: 10.20.30.193 - 10.20.30.254
+broadcast: 10.20.30.255
+
+LAN 4 - HR 
+2^5 >= hosts => 32 - 2 = 30 >= 20
+usable hosts: 30
+mask: 255.255.255.224 /27
+networks: 10.20.31.0
+usable: 10.20.31.1 - 10.20.31.30
+broadcast: 10.20.31.31
+
+LAN 5 - IT
+2^4 >= hosts => 16 - 2 = 14 >= 12
+usable hosts: 14
+mask: 255.255.255.240 /28
+network: 10.20.31.32
+usable: 10.20.31.33 - 10.20.31.46
+broadcast: 10.20.31.47
+
+LAN 6 - Exec
+2^3 >= hosts => 8 - 2 = 6 >= 6
+usable hosts: 6
+mask: 255.255.255.248 /29
+network: 10.20.31.48
+usable: 10.20.31.49 - 10.20.31.54
+broadcast: 10.20.31.55
+
+Available IPs: 10.20.31.56 - 10.20.31.255
