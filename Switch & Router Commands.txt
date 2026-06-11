@@ -5,18 +5,18 @@
 
 * Router> en / enable = enter privileged mode
 * Router# sh r / run = show running-config - Switch Status
-* Router# sh ip ro / route = show routing table
 * Router# sh ip int br = interface status
 * Router# sh ver = IOS & Hardware info
 * Router# wr = save config
 * Router# sh [port] sw = view port status
+* Router# sh controller [serialport] show status of serial port
+
 
 
 // GLOBAL CONFIG MODE //
 
 * Router# conf t = enter global mode
 * Router(config)# host R1 = set hostname
-* R1(config)# ip ro <network> <subnetmask> <gateway> = static routing
 * R1(config)# ip routing = enable IP routing
 * R1(config)# no ip dhcp pool [name] = delete pool
 * R1# sh ip dhcp pool = SHOW DHCP POOL
@@ -99,6 +99,16 @@
 
 
 // ROUTING PROTOCOLS //
+
+* Router# sh ip ro/route = show routing table.
+
+NOTE: C = connected; L = local; S = static.
+
+* static routing = manually assign routing address
+	R1(config)# ip ro/route [source IP] [source mask] [target IP]
+
+* default router = use the default gateway of the destination.
+	R1(config)# ip ro 0.0.0.0 0.0.0.0 [gateway IP]
 
 * router rip = enables routing information protocol (rip)
 
@@ -196,6 +206,7 @@
 * Switch# sh vlan br = VLAN Summary
 * Switch# sh mac add = show MAC table
 * Switch# sh int st/status - show port status (quick check)
+* Switch# sh ip st br - show port status (quick check)
 * Switch# sh int [port] sw - show port status (detailed)
 * Switch# wr = save config
 * Switch# erase startup / erase startup-config => reload = factory reset switch
@@ -208,6 +219,14 @@
 * Switch(config)# host SW1 = set hostname
 * Switch(config)# do sh ip arp inspec in - show trusted and untrusted DAI
 * Switch(config)# no ip domain lookup - prevent unnecessary DNS lookup
+
+// Assigning IP in L3 Switch's port //
+NOTE: use 'no switchport' for connecting to router or another layer 3 switch.
+
+* L3SW(config)# int [port]
+* L3SW(config)# no sw [switchport]
+* L3SW(config)# ip add [IP] [Subnet Mask]
+* L3SW(config)# no shut
 
 // VIRTUAL LAN (VLAN) //
 
