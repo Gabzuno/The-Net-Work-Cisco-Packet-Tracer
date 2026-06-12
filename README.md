@@ -256,6 +256,17 @@
       </li>
     </ol>
   </li>
+  <li><b>ICMP (Internet Control Message Protocol)</b> - is a network-layer protocol used by devices like routers to diagnose communication issues, report errors, and manage network traffic. It is the foundation for diagnostic tools like ping and traceroute, ensuring data reaches its destination in a timely manner.
+    <br>
+      <h3><b>Important Technical Details</b></h3>
+      <p>ICMP messages are encapsulated directly inside IP datagrams and include a specific <b><em>Type</em></b> and <b><em>Code</em></b> field to define the exact nature of the message:
+      <ul style="list-style-type:disc">
+        <li><b>Type 0 & 8:</b> Echo reply and Echo request (<b><em>ping</b></em> commands).
+        <li><b>Type 3:</b> Destination Unreachable (e.g., port or network is unavailable).
+        <li><b>Type 11:</b> Time Exceeded (e.g., the packets's Time-to-Live (TTL) has reached 0, common in <b><em>traceroute</em></b>) 
+      </ul>
+    <h4>For a comprehensive list of assigned message types and codes, check the official <a href="https://www.iana.org/assignments/icmp-parameters">IANA ICMP Parameters</a> registry.
+  </li>
   <li><b>DHCP Snooping</b> - is a security technology on a Layer 2 network switch that can prevent unauthorized DHCP Servers from accessing your network.
   </li>
   <li><b>Address Resolution Protocol (ARP)</b>  -is a fundamental networking protocol used to map a dynamic, logical IP address (Layer 3) to a fixed, physical MAC address (Layer 2) on a local area network (LAN). When a device wants to communicate with another device on the same network, it uses ARP to find the destination's MAC address if only the IP address is known. To improve efficiency, devices store these mappings in an "ARP cache" (or table) to avoid repeating the broadcast process for every packet.
