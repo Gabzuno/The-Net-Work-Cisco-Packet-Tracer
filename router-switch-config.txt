@@ -143,8 +143,9 @@ NOTE: C = connected; L = local; S = static.
 	R1(config-router)# net [network-address] [wildcard-mask] area [area-id]
 
 	R1(config-router)# passive-interface [interface-id]
+	R1(config-router)# auto-cost reference-bandwidth [1-4294967] - The reference bandwidth in terms of Mbits per second
 
-		Note: Prevents neighbor adjacencies on networks with no routers.
+		Note: Prevents neighbor adjacencies on networks with no routers. cost most be consistent.
 
 	R1# sh ip ospf neighbor = show listed routers with OSPF configured.
 
